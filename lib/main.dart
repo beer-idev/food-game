@@ -16,12 +16,17 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Healthy Plate Game',
+      theme: ThemeData(
+        primarySwatch: Colors.pink,
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFFFF69B4)),
+        useMaterial3: true,
+      ),
       home: const LoginPage(),
     );
   }
 }
 
-// ================= LOGIN =================
+// ================= 1. LOGIN PAGE (Princess Style) =================
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -38,124 +43,110 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: Stack(
         children: [
-          // ===== พื้นหลังไล่สี =====
           Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
-                colors: [Color(0xFF81D4FA), Color(0xFFE1F5FE)],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-              ),
-            ),
-          ),
-
-          // ===== รูปอาหารลอย =====
-          Positioned(
-            top: 60,
-            left: 20,
-            child: Opacity(
-              opacity: 0.15,
-              child: Image.asset(
-                'assets/images/apple.png',
-                width: 80,
-                errorBuilder: (_, __, ___) => const SizedBox(),
+                colors: [Color(0xFFFFD1DC), Color(0xFFFFF5F7), Color(0xFFE1F5FE)],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
               ),
             ),
           ),
           Positioned(
-            bottom: 100,
-            right: 30,
-            child: Opacity(
-              opacity: 0.15,
-              child: Image.asset(
-                'assets/images/milk.png',
-                width: 90,
-                errorBuilder: (_, __, ___) => const SizedBox(),
-              ),
-            ),
+            top: -50,
+            right: -50,
+            child: CircleAvatar(radius: 150, backgroundColor: Colors.white.withOpacity(0.5)),
           ),
-
-          // ===== กล่อง Login =====
           Center(
-            child: Container(
-              width: 360,
-              padding: const EdgeInsets.all(24),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.15),
-                    blurRadius: 10,
-                    offset: const Offset(0, 6),
-                  ),
-                ],
-              ),
+            child: SingleChildScrollView(
               child: Column(
-                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    'Healthy Plate Game',
-                    style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 8),
-                  const Text(
-                    'เกมเรียนรู้โภชนาการ 5 หมู่',
-                    style: TextStyle(fontSize: 16, color: Colors.grey),
-                  ),
-
-                  const SizedBox(height: 24),
-
-                  TextField(
-                    controller: nameController,
-                    decoration: InputDecoration(
-                      labelText: 'ชื่อนักเรียน',
-                      prefixIcon: const Icon(Icons.person),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
+                  Container(
+                    padding: const EdgeInsets.all(25),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                      border: Border.all(color: const Color(0xFFFFD700), width: 3),
+                      boxShadow: [
+                        BoxShadow(color: Colors.pinkAccent.withOpacity(0.2), blurRadius: 30, spreadRadius: 10)
+                      ],
                     ),
+                    child: const Icon(Icons.auto_awesome_rounded, size: 80, color: Color(0xFFFF69B4)),
                   ),
-
-                  const SizedBox(height: 24),
-
-                  // ===== ปุ่มมี Animation =====
-                  GestureDetector(
-                    onTapDown: (_) => setState(() => isPressed = true),
-                    onTapUp: (_) {
-                      setState(() => isPressed = false);
-                      if (nameController.text.isNotEmpty) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                HomePage(playerName: nameController.text),
-                          ),
-                        );
-                      }
-                    },
-                    child: AnimatedScale(
-                      scale: isPressed ? 0.95 : 1.0,
-                      duration: const Duration(milliseconds: 120),
-                      child: Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.symmetric(vertical: 14),
-                        decoration: BoxDecoration(
-                          color: Colors.blue,
-                          borderRadius: BorderRadius.circular(14),
+                  const SizedBox(height: 30),
+                  Container(
+                    width: 350,
+                    margin: const EdgeInsets.symmetric(horizontal: 25),
+                    padding: const EdgeInsets.all(35),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.9),
+                      borderRadius: BorderRadius.circular(50),
+                      border: Border.all(color: const Color(0xFFFFD1DC), width: 2),
+                      boxShadow: [
+                        BoxShadow(color: Colors.pink.withOpacity(0.1), blurRadius: 30, offset: const Offset(0, 15)),
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        const Text(
+                          'Healthy Quest',
+                          style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Color(0xFFFF1493), letterSpacing: 1.2),
                         ),
-                        child: const Center(
-                          child: Text(
-                            'เริ่มเล่นเกม',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
+                        const SizedBox(height: 5),
+                        Text(
+                          'เริ่มต้นการผจญภัยอาหาร 5 หมู่',
+                          style: TextStyle(fontSize: 14, color: Colors.pink.shade300),
+                        ),
+                        const SizedBox(height: 40),
+                        TextField(
+                          controller: nameController,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Color(0xFFFF1493)),
+                          decoration: InputDecoration(
+                            hintText: 'กรอกชื่อนักเรียน...',
+                            filled: true,
+                            fillColor: Colors.pink.withOpacity(0.05),
+                            prefixIcon: const Icon(Icons.star_border_purple500, color: Color(0xFFFF69B4)),
+                            contentPadding: const EdgeInsets.symmetric(vertical: 20),
+                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(30), borderSide: BorderSide.none),
+                          ),
+                        ),
+                        const SizedBox(height: 30),
+                        GestureDetector(
+                          onTapDown: (_) => setState(() => isPressed = true),
+                          onTapUp: (_) {
+                            setState(() => isPressed = false);
+                            if (nameController.text.isNotEmpty) {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(playerName: nameController.text)));
+                            }
+                          },
+                          child: AnimatedScale(
+                            scale: isPressed ? 0.95 : 1.0,
+                            duration: const Duration(milliseconds: 100),
+                            child: Container(
+                              width: double.infinity,
+                              padding: const EdgeInsets.symmetric(vertical: 18),
+                              decoration: BoxDecoration(
+                                gradient: const LinearGradient(colors: [Color(0xFFFF69B4), Color(0xFFFF1493)]),
+                                borderRadius: BorderRadius.circular(30),
+                                boxShadow: [
+                                  BoxShadow(color: Colors.pink.withOpacity(0.4), blurRadius: 15, offset: const Offset(0, 8)),
+                                ],
+                              ),
+                              child: const Center(
+                                child: Text('เข้าสู่ระบบ!', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
+                              ),
                             ),
                           ),
                         ),
-                      ),
+                      ],
                     ),
+                  ),
+                  const SizedBox(height: 30),
+                  Text(
+                    'กินให้ครบ 5 หมู่ เพื่อสุขภาพที่แข็งแรง',
+                    style: TextStyle(color: Colors.pink.shade400, fontWeight: FontWeight.w500),
                   ),
                 ],
               ),
@@ -167,75 +158,97 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-// ================= HOME =================
+// ================= 2. HOME PAGE (Princess Style - Elegant Text Edition) =================
 class HomePage extends StatelessWidget {
   final String playerName;
-
   const HomePage({super.key, required this.playerName});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(playerName),
-        actions: [
-          TextButton(
-            onPressed: () {                                                                                                           
-              Navigator.pop(context);
-            },
-            child: const Text('Log out', style: TextStyle(color: Colors.white)),
-          ),
-        ],
-      ),
-      body: Column(
+      body: Stack(
         children: [
-          Expanded(
-            child: Container(
-              margin: const EdgeInsets.all(16),
-              width: double.infinity,
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black),
-              ),
-              child: Image.network(
-                'https://image.shutterstock.com/image-vector/five-food-groups-isolated-illustration-260nw-2260307357.jpg',
+          Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Color(0xFFFFF5F7), Color(0xFFFFD1DC)], 
+                begin: Alignment.topCenter, 
+                end: Alignment.bottomCenter
               ),
             ),
           ),
-
-          Container(
-            margin: const EdgeInsets.only(bottom: 40),
-            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black, width: 1.5),
-              borderRadius: BorderRadius.circular(40),
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
+          SafeArea(
+            child: Column(
               children: [
-                menuItem(
-                  context,
-                  Icons.menu_book,
-                  'บทเรียน',
-                  const LessonPage(),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('พร้อมลุยหรือยัง?', style: TextStyle(fontSize: 16, color: Colors.pink.shade400)),
+                          Text('สวัสดี $playerName!', style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFFFF1493))),
+                        ],
+                      ),
+                      Container(
+                        decoration: BoxDecoration(color: Colors.white.withOpacity(0.8), shape: BoxShape.circle, border: Border.all(color: Colors.pink.shade100)),
+                        child: IconButton(
+                          onPressed: () => Navigator.pop(context),
+                          icon: const Icon(Icons.logout_rounded, color: Color(0xFFFF69B4)),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
+                
+// --- ส่วนที่เปลี่ยนจากกล่องข้อความ มาเป็นกล่องปราสาทเปล่าๆ ---
+                Expanded(
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                        colors: [Color(0xFFFF69B4), Color(0xFFFFB6C1)],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
+                      borderRadius: BorderRadius.circular(40),
+                      border: Border.all(color: Colors.white, width: 4),
+                      boxShadow: [
+                        BoxShadow(color: Colors.pink.withOpacity(0.3), blurRadius: 20, offset: const Offset(0, 10))
+                      ],
+                    ),
+                    // ใช้ Center เพื่อให้ไอคอนอยู่ตรงกลางพอดีเพคะ
+                    child: const Center(
+                      child: Icon(
+                        Icons.castle_rounded, // ไอคอนปราสาท
+                        size: 120, // ปรับขนาดให้ใหญ่จุใจ
+                        color: Colors.white, // สีขาวเข้าธีม
+                      ),
+                    ),
+                  ),
+                ),
+                // --------------------------------------------------------
 
-                const SizedBox(width: 28),
-                menuItem(
-                  context,
-                  Icons.help_outline,
-                  'วิธีการเล่น',
-                  const HowToPlayPage(),
-                ),
-                const SizedBox(width: 28),
-                menuItem(context, Icons.games, 'Game', const GamePage()),
-                const SizedBox(width: 28),
-                menuItem(
-                  context,
-                  Icons.star,
-                  'คะแนน',
-                  ScorePage(
-                    playerName: playerName,
-                    scores: const [80, 90, 100, 70, 85],
+                const SizedBox(height: 25),
+                Container(
+                  margin: const EdgeInsets.only(bottom: 30, left: 20, right: 20),
+                  padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 15),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.95),
+                    borderRadius: BorderRadius.circular(40),
+                    border: Border.all(color: const Color(0xFFFFD700).withOpacity(0.3), width: 2),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      menuItem(context, Icons.menu_book_rounded, 'บทเรียน', const LessonPage(), const Color(0xFFFF1493)),
+                      menuItem(context, Icons.auto_fix_high_rounded, 'วิธีเล่น', const HowToPlayPage(), const Color(0xFFFF1493)),
+                      menuItem(context, Icons.favorite_rounded, 'เริ่มเกม', const GamePage(), const Color(0xFFFF1493)),
+                      menuItem(context, Icons.workspace_premium_rounded, 'คะแนน', ScorePage(playerName: playerName, scores: const [100, 90]), const Color(0xFFFFD700)),
+                    ],
                   ),
                 ),
               ],
@@ -245,28 +258,22 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
-}
 
-// ================= MENU ITEM =================
-Widget menuItem(BuildContext context, IconData icon, String text, Widget page) {
-  return InkWell(
-    borderRadius: BorderRadius.circular(20),
-    onTap: () {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => page));
-    },
-    child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+  Widget menuItem(BuildContext context, IconData icon, String text, Widget page, Color color) {
+    return InkWell(
+      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => page)),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, size: 36),
-          const SizedBox(height: 6),
-          Text(
-            text,
-            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+          Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(color: color.withOpacity(0.1), shape: BoxShape.circle, border: Border.all(color: color.withOpacity(0.3), width: 1.5)),
+            child: Icon(icon, size: 30, color: color),
           ),
+          const SizedBox(height: 10),
+          Text(text, style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: Colors.pink.shade900)),
         ],
       ),
-    ),
-  );
+    );
+  }
 }
