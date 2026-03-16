@@ -16,7 +16,10 @@ class ScorePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('คะแนนของฉัน', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+        title: const Text(
+          'คะแนนของฉัน',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
         backgroundColor: const Color(0xFFFF69B4),
         elevation: 0,
@@ -107,7 +110,11 @@ class ScorePage extends StatelessWidget {
 
               const Text(
                 'คะแนนรายข้อ',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF880E4F)),
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF880E4F),
+                ),
               ),
 
               const SizedBox(height: 10),
@@ -178,7 +185,10 @@ class ScorePage extends StatelessWidget {
               Center(
                 child: ElevatedButton.icon(
                   icon: const Icon(Icons.home, color: Colors.white),
-                  label: const Text('กลับหน้าแรก', style: TextStyle(color: Colors.white)),
+                  label: const Text(
+                    'กลับหน้าแรก',
+                    style: TextStyle(color: Colors.white),
+                  ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFFF69B4),
                     padding: const EdgeInsets.symmetric(

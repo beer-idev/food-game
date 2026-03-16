@@ -7,8 +7,10 @@ class HowToPlayPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ขั้นตอนการเล่นเกม', 
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+        title: const Text(
+          'ขั้นตอนการเล่นเกม',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
         backgroundColor: const Color(0xFFFF69B4), // สีชมพู Princess Pink
         elevation: 5,
@@ -31,13 +33,14 @@ class HowToPlayPage extends StatelessWidget {
           children: const [
             HeaderCard(),
             SizedBox(height: 25),
-            
+
             RuleCard(
               number: '1',
               icon: Icons.auto_awesome, // เปลี่ยนเป็นประกายวิเศษ
               iconColor: Colors.pinkAccent,
               title: 'เริ่มภารกิจ',
-              text: 'กดปุ่ม “Game” เพื่อเริ่มต้นการเดินทางเข้าสู่โลกแห่งสารอาหาร',
+              text:
+                  'กดปุ่ม “Game” เพื่อเริ่มต้นการเดินทางเข้าสู่โลกแห่งสารอาหาร',
             ),
             RuleCard(
               number: '2',
@@ -51,28 +54,32 @@ class HowToPlayPage extends StatelessWidget {
               icon: Icons.verified_rounded, // เปลี่ยนเป็นตราประทับ
               iconColor: Colors.orangeAccent,
               title: 'เกณฑ์การผ่าน',
-              text: 'ต้องตอบถูกให้ได้คะแนนไม่น้อยกว่า 80% ถึงจะผ่านไปยังด่านถัดไปได้',
+              text:
+                  'ต้องตอบถูกให้ได้คะแนนไม่น้อยกว่า 80% ถึงจะผ่านไปยังด่านถัดไปได้',
             ),
             RuleCard(
               number: '4',
               icon: Icons.brush, // เปลี่ยนเป็นไม้คทา
               iconColor: Colors.redAccent,
               title: 'ลองใหม่อีกครั้ง',
-              text: 'หากคะแนนไม่ถึง 80% ไม่ต้องเสียใจ! กลับไปแก้ตัวในข้อเดิมได้ทันที',
+              text:
+                  'หากคะแนนไม่ถึง 80% ไม่ต้องเสียใจ! กลับไปแก้ตัวในข้อเดิมได้ทันที',
             ),
             RuleCard(
               number: '5',
-              icon: Icons.report_problem_rounded, 
+              icon: Icons.report_problem_rounded,
               iconColor: Colors.purpleAccent,
               title: 'ระวังเวลาหมด',
               text: 'ถ้าตอบไม่ทันเวลา คะแนนจะถูกลดลงครั้งละ 10% รีบตัดสินใจนะ!',
             ),
             RuleCard(
               number: '6',
-              icon: Icons.workspace_premium_rounded, // เปลี่ยนเป็นมงกุฎ/เหรียญตรา
+              icon:
+                  Icons.workspace_premium_rounded, // เปลี่ยนเป็นมงกุฎ/เหรียญตรา
               iconColor: Colors.amber,
               title: 'ประกาศชัยชนะ',
-              text: 'เมื่อพิชิตครบ 10 ข้อ สามารถตรวจสอบคะแนนรวมได้ที่หน้า “คะแนน”',
+              text:
+                  'เมื่อพิชิตครบ 10 ข้อ สามารถตรวจสอบคะแนนรวมได้ที่หน้า “คะแนน”',
             ),
             SizedBox(height: 30),
           ],
@@ -97,7 +104,10 @@ class HeaderCard extends StatelessWidget {
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(35),
-        border: Border.all(color: const Color(0xFFFFD700), width: 2.5), // ขอบทองหรูๆ
+        border: Border.all(
+          color: const Color(0xFFFFD700),
+          width: 2.5,
+        ), // ขอบทองหรูๆ
         boxShadow: [
           BoxShadow(
             color: Colors.pink.withOpacity(0.3),
@@ -108,7 +118,11 @@ class HeaderCard extends StatelessWidget {
       ),
       child: Column(
         children: [
-          const Icon(Icons.castle_rounded, color: Colors.white, size: 60), // ไอคอนปราสาท
+          const Icon(
+            Icons.castle_rounded,
+            color: Colors.white,
+            size: 60,
+          ), // ไอคอนปราสาท
           const SizedBox(height: 12),
           const Text(
             'กติกาการเล่นเกม',
@@ -128,7 +142,11 @@ class HeaderCard extends StatelessWidget {
             ),
             child: const Text(
               'เตรียมตัวให้พร้อมก่อนเริ่มสนุก!',
-              style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w500),
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 15,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
         ],
@@ -146,8 +164,8 @@ class RuleCard extends StatelessWidget {
   final String text;
 
   const RuleCard({
-    super.key, 
-    required this.number, 
+    super.key,
+    required this.number,
     required this.icon,
     required this.iconColor,
     required this.title,
@@ -220,8 +238,8 @@ class RuleCard extends StatelessWidget {
                     Text(
                       text,
                       style: TextStyle(
-                        fontSize: 15, 
-                        color: Colors.grey.shade700, 
+                        fontSize: 15,
+                        color: Colors.grey.shade700,
                         height: 1.4,
                         fontWeight: FontWeight.w400,
                       ),
